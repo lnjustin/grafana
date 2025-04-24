@@ -937,7 +937,7 @@
           "format": "time_series",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT\n  DATE_BIN(INTERVAL '1 minute', time, TIMESTAMP '1970-01-01T00:00:00Z') AS \"time\",\n  \"${tagName}\" AS \"hub\",\n  AVG(value) AS \"usage\"\nFROM \"cpuPct\"\nWHERE\n  $__timeFilter(time)\n  AND \"${tagName}\" ~ '^${hubInfo:regex}$'\nGROUP BY 1, 2\nORDER BY 1;",
+          "rawSql": "SELECT\n  DATE_BIN(INTERVAL '1 minute', time, TIMESTAMP '1970-01-01T00:00:00Z') AS \"time\",\n  \"${tagName}\" AS \"hub\",\n  AVG(value) AS \"${tagName}:\"\n \nFROM \"cpuPct\"\nWHERE\n  $__timeFilter(time)\n  AND \"${tagName}\" ~ '^${hubInfo:regex}$'\nGROUP BY 1, 2\nORDER BY 1;",
           "refId": "A"
         }
       ],
@@ -1044,7 +1044,7 @@
           "format": "time_series",
           "hide": false,
           "rawQuery": true,
-          "rawSql": "SELECT\n  DATE_BIN(INTERVAL '1 minute', time, TIMESTAMP '1970-01-01T00:00:00Z') AS time,\n  \"${tagName}\" AS hub,\n  AVG(value) AS value\nFROM \"temperature\"\nWHERE\n  $__timeFilter(time)\n  AND \"${tagName}\" ~ '^${hubInfo:regex}$'\nGROUP BY 1, 2\nORDER BY 1",
+          "rawSql": "SELECT\n  DATE_BIN(INTERVAL '1 minute', time, TIMESTAMP '1970-01-01T00:00:00Z') AS time,\n  \"${tagName}\" AS hub,\n  AVG(value) AS \"${tagName}:\"\n \nFROM \"temperature\"\nWHERE\n  $__timeFilter(time)\n  AND \"${tagName}\" ~ '^${hubInfo:regex}$'\nGROUP BY 1, 2\nORDER BY 1",
           "refId": "A"
         }
       ],
@@ -1123,12 +1123,12 @@
     ]
   },
   "time": {
-    "from": "now-30d",
+    "from": "now-2d",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Hub Info SQL",
   "uid": "Fw9rvw47z",
-  "version": 144
+  "version": 146
 }
